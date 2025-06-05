@@ -1,0 +1,8 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useGetLibriInGiroQuery } from './services/prestitoApi';
+import { Table, TableBody, TableCell, TableHead, TableRow, Typography, Container, } from '@mui/material';
+const LibriInGiro = () => {
+    const { data: libri, isLoading, isError } = useGetLibriInGiroQuery();
+    return (_jsxs(Container, { sx: { mt: 4 }, children: [_jsx(Typography, { variant: "h5", gutterBottom: true, textAlign: "center", children: "\uD83D\uDCDA Libri attualmente in prestito" }), isLoading && _jsx(Typography, { children: "Caricamento in corso..." }), isError && _jsx(Typography, { color: "error", children: "Errore durante il caricamento." }), !isLoading && !isError && (_jsxs(Table, { children: [_jsx(TableHead, { children: _jsxs(TableRow, { children: [_jsx(TableCell, { children: "Titolo" }), _jsx(TableCell, { children: "Autore" }), _jsx(TableCell, { children: "Inventario" }), _jsx(TableCell, { children: "Collocazione" }), _jsx(TableCell, { children: "Lettore" }), _jsx(TableCell, { children: "Data Inizio" }), _jsx(TableCell, { children: "Data Fine" })] }) }), _jsx(TableBody, { children: libri?.map((libro, index) => (_jsxs(TableRow, { children: [_jsx(TableCell, { children: libro.titolo }), _jsx(TableCell, { children: libro.autore }), _jsx(TableCell, { children: libro.numeroInventario }), _jsx(TableCell, { children: libro.collocazione }), _jsxs(TableCell, { children: [libro.nome, " ", libro.cognome] }), _jsx(TableCell, { children: new Date(libro.dataInizioPrestito).toLocaleDateString() }), _jsx(TableCell, { children: new Date(libro.dataFinePrestito).toLocaleDateString() })] }, index))) })] }))] }));
+};
+export default LibriInGiro;

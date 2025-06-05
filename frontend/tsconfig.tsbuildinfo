@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/libriingiro.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/app/store.ts","./src/components/prestitoform.tsx","./src/services/libriapi.ts","./src/services/prestitoapi.ts","./src/types/libro.ts","./src/types/prestitolibrodto.ts"],"version":"5.8.3"}

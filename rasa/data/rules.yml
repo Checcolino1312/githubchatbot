@@ -1,0 +1,46 @@
+#rules.yml: contiene regole fisse e specifiche su come il bot deve rispondere in determinati scenari.
+
+version: "3.1"
+
+rules:
+- rule: Greeting message
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+- rule: Default answer
+  steps:
+    - intent: nlu_fallback
+    - action: utter_default
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+    - intent: bot_challenge
+    - action: utter_iamabot
+
+- rule: Risposta a ringraziamento
+  steps:
+    - intent: thank_you
+    - action: utter_thank_you
+
+
+
+- rule: Risposta al nome del bot
+  steps:
+    - intent: ask_name
+    - action: utter_ask_name
+
+- rule: Risposta alla funzione del bot
+  steps:
+    - intent: ask_bot_function
+    - action: utter_bot_function
+
+- rule: Risposta alla richiesta di aiuto
+  steps:
+    - intent: help_request
+    - action: utter_help

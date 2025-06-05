@@ -1,0 +1,33 @@
+services:
+  rasa:
+    build:
+      context: .
+      dockerfile: Dockerfile.rasa
+    ports:
+      - "5005:5005"
+    restart: always
+    depends_on:
+      - action_server
+    command: [ "rasa", "run", "--enable-api", "--cors", "*", "--debug" ]
+
+  action_server:
+    build:
+      context: .
+      dockerfile: Dockerfile.actions
+    volumes:
+      - ./actions:/app/actions
+    ports:
+      - "5055:5055"
+    restart: always
+    depends_on:
+      - mongo
+    entrypoint: []
+    command: [ "python", "-m", "rasa_sdk", "--actions", "actions" ]
+
+  mongo:
+    image: mongo
+    ports:
+      - "27019:27017"
+    volumes:
+      - ./mongo_data:/data/db
+    restart: always

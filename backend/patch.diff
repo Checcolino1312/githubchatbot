@@ -1,0 +1,41 @@
+From 97dcb90043c3f4190352a9f5faee478dded72885 Mon Sep 17 00:00:00 2001
+From: Checcolino1312 <75864171+Checcolino1312@users.noreply.github.com>
+Date: Wed, 4 Jun 2025 11:14:23 +0200
+Subject: [PATCH] fix commit
+
+---
+ docker-compose.yml | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+ create mode 100644 docker-compose.yml
+
+diff --git a/docker-compose.yml b/docker-compose.yml
+new file mode 100644
+index 0000000..a78504a
+--- /dev/null
++++ b/docker-compose.yml
+@@ -0,0 +1,22 @@
++version: "3.8"
++
++services:
++  mongodb:
++    image: mongo
++    ports:
++      - "27018:27017"
++    networks:
++      - app-network
++
++  backend:
++    build: .
++    ports:
++      - "8080:8080"
++    networks:
++      - app-network
++    depends_on:
++      - mongodb
++
++networks:
++  app-network:
++    driver: bridge
+-- 
+2.39.1.windows.1
+

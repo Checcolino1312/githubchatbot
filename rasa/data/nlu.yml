@@ -1,0 +1,164 @@
+#nlu.yml: contiene esempi di frasi utente etichettate per addestrare il riconoscimento degli intenti e delle entità.
+
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - ciao
+    - salve
+    - buongiorno
+    - hey
+    - come va?
+    - ehi, come stai?
+    - buon pomeriggio
+
+- intent: request_opening_hours
+  examples: |
+    - A che ora apre la biblioteca?
+    - Il Lunedì è aperta la biblioteca?
+    - Quando è chiusa la biblioteca?
+    - Oggi è aperta la biblioteca?
+    - Orari di apertura?
+
+- intent: chiedi_disponibilita
+  examples: |
+    - È disponibile il libro [Il piccolo principe](titolo_libro)?
+    - Hai il libro [1984](titolo_libro)?
+    - Posso trovare [Don Chisciotte della Mancia](titolo_libro)?
+    - Avete [Cent'anni di solitudine](titolo_libro)?
+    - Avete Cent anni di solitudine?
+    - Hai [Siddhartha](titolo_libro)?
+    - Si trova il libro [Il Gattopardo](titolo_libro)?
+    - Avete una copia di [Il nome della rosa](titolo_libro)?
+    - È disponibile Siddhartha?
+    - Avete Don Chisciotte?
+    - Il libro [Il barone rampante](titolo_libro) è disponibile?
+    - Hai [Il nome della rosa](titolo_libro)?
+    - Vorrei il libro [La coscienza di zeno](titolo_libro)
+
+
+
+- lookup: titolo_libro
+  examples: |
+      - Il nome della rosa
+      - 1984
+      - Cent'anni di solitudine
+      - La coscienza di Zeno
+      - Orgoglio e pregiudizio
+      - Il piccolo principe
+      - Il Gattopardo
+      - Siddhartha
+      - Don Chisciotte della Mancia
+      - Il barone rampante
+
+- intent: request_contacts
+  examples: |
+    - Numero di telefono della biblioteca?
+    - Cellulare
+    - Email della biblioteca?
+    - Contatti della biblioteca?
+    - Recapiti della biblioteca?
+
+- intent: request_info
+  examples: |
+    - Come funziona un prestito?
+    - Vorrei prendere in prestito un libro
+    - è possibile richiedere un prestito?
+    - Prestito libri
+    - Vorrei fare un prestito
+
+- intent: goodbye
+  examples: |
+    - arrivederci
+    - ci vediamo
+    - addio
+    - buona giornata
+    - buona serata
+    - a presto
+    - ci sentiamo dopo
+
+- intent: affirm
+  examples: |
+    - sì
+    - si
+    - si certo
+    - certo
+    - esatto
+    - va bene
+    - confermo
+    - assolutamente sì
+    - ovvio
+    - certamente
+    - d'accordo
+    - ok
+    - perfetto
+    - va benissimo
+    - ovviamente
+    - chiaro
+
+
+- intent: deny
+  examples: |
+    - no
+    - assolutamente no
+    - non credo
+    - non voglio
+    - non mi piace
+    - non va bene
+
+- intent: mood_great
+  examples: |
+    - sto bene
+    - alla grande
+    - fantastico
+    - sto benissimo
+    - sono felice
+
+- intent: mood_unhappy
+  examples: |
+    - sono triste
+    - non mi sento bene
+    - è una giornata pessima
+    - sono giù di morale
+    - non va bene oggi
+    - sono arrabbiato
+
+- intent: bot_challenge
+  examples: |
+    - sei un bot?
+    - sei una persona vera?
+    - sei reale?
+    - sei umano?
+    - sto parlando con un robot?
+
+- intent: help_request
+  examples: |
+    - mi puoi aiutare?
+    - ho bisogno di aiuto
+    - aiutami per favore
+    - cosa puoi fare?
+    - puoi darmi una mano?
+
+- intent: thank_you
+  examples: |
+    - grazie
+    - ti ringrazio
+    - grazie mille
+    - apprezzo molto
+    - sei gentilissimo
+
+- intent: ask_name
+  examples: |
+    - come ti chiami?
+    - qual è il tuo nome?
+    - chi sei?
+    - posso sapere il tuo nome?
+
+- intent: ask_bot_function
+  examples: |
+    - cosa sai fare?
+    - a cosa servi?
+    - qual è il tuo scopo?
+    - che tipo di bot sei?
+    - come puoi aiutarmi?

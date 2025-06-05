@@ -1,0 +1,77 @@
+#stories.yml: descrive esempi di conversazioni (flussi) per addestrare il dialogo del bot.
+
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: mood_great
+    - action: utter_happy
+
+- story: sad path 1
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: mood_unhappy
+    - action: utter_cheer_up
+    - action: utter_did_that_help
+    - intent: affirm
+    - action: utter_happy
+
+- story: sad path 2
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: mood_unhappy
+    - action: utter_cheer_up
+    - action: utter_did_that_help
+    - intent: deny
+    - action: utter_goodbye
+
+- story: richiesta orari di apertura
+  steps:
+    - intent: request_opening_hours
+    - action: utter_request_opening_hours
+
+- story: richiesta Contatti
+  steps:
+    - intent: request_contacts
+    - action: utter_request_contacts
+
+- story: richiesta prestito
+  steps:
+    - intent: request_info
+    - action: utter_request_info
+
+
+# 🔽 Aggiunte raccomandate
+- story: greet and thank
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: thank_you
+    - action: utter_thank_you
+
+- story: help and name
+  steps:
+    - intent: help_request
+    - action: utter_help
+    - intent: ask_name
+    - action: utter_ask_name
+
+- story: challenge and function
+  steps:
+    - intent: bot_challenge
+    - action: utter_iamabot
+    - intent: ask_bot_function
+    - action: utter_bot_function
+
+- story: Verifica disponibilità libro
+  steps:
+  - intent: chiedi_disponibilita
+    entities:
+      - titolo_libro: "Il Piccolo Principe"
+  - action: action_controlla_disponibilita

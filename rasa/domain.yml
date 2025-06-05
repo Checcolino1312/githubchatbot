@@ -1,0 +1,102 @@
+# domain.yml: definisce le intents, entità, risposte, slot e azioni che il bot può usare.
+
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - help_request
+  - thank_you
+  - ask_name
+  - ask_bot_function
+  - nlu_fallback
+  - request_info
+  - request_opening_hours
+  - request_contacts
+  - chiedi_disponibilita
+
+entities:
+  - titolo_libro
+
+responses:
+  utter_greet:
+    - text: "Ciao! Come posso aiutarti oggi?"
+
+  utter_default:
+    - text: "Mi dispiace, non ho capito. Puoi ripetere?"
+
+  utter_goodbye:
+    - text: "Arrivederci! Alla prossima!"
+
+  utter_affirm:
+    - text: "Ottimo!"
+
+  utter_deny:
+    - text: "Capito, nessun problema."
+
+  utter_cheer_up:
+    - text: "Ecco qualcosa per tirarti su:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+    - text: "Questo ti ha aiutato?"
+
+  utter_happy:
+    - text: "Fantastico, continua così!"
+
+  utter_iamabot:
+    - text: "Sono un bot, creato con Rasa."
+
+  utter_help:
+    - text: "Certo! Posso aiutarti con informazioni, rispondere a domande o semplicemente fare due chiacchiere."
+
+  utter_thank_you:
+    - text: "Prego! Fammi sapere se posso aiutarti ancora."
+
+  utter_ask_name:
+    - text: "Mi chiamo Assistente Rasa, e tu?"
+
+  utter_bot_function:
+    - text: "Sono qui per aiutarti con qualsiasi domanda o compito."
+
+  utter_request_opening_hours:
+    - text: "La biblioteca è aperta dal Lunedì al Venerdì dalle 9:00 alle 12:00, nella giornata di Giovedì anche nel pomeriggio dalle 16:00 alle 18:00"
+
+  utter_request_contacts:
+    - text: "Può contattare la biblioteca al fisso 0831 846539 o tramite email biblioteca@comune.oria.br.it"
+
+  utter_request_info:
+    - text: "I prestiti hanno durata di 30gg con una proroga di 15gg, si possono richiedere solo in presenza."
+
+slots:
+  titolo_libro:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: titolo_libro
+
+  user_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+
+  user_request:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+actions:
+  - action_greet_user
+  - action_controlla_disponibilita
