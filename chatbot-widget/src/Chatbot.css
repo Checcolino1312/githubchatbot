@@ -106,14 +106,9 @@
 }
 
 .chatbot-input {
-  border-top: 1px solid #ddd;
   padding: 12px;
   width: 100%;
   box-sizing: border-box;
-  border: none;
-  font-size: 14px;
-  outline: none;
-  background-color: white;
   border-radius: 0 0 10px 10px;
 }
 

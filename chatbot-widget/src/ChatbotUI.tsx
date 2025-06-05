@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Box, Paper, Typography, IconButton, Avatar, TextField, Button } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import { rasaApi } from './services/rasaApi';
 
 type Message = {
@@ -67,72 +69,78 @@ export default function ChatbotUI({ avatarUrl }: ChatbotUIProps) {
     <>
       {!isOpen && (
         <>
-          <button
+          <IconButton
             className="chatbot-float"
             onClick={() => {
               setIsOpen(true);
               setShowPreview(false);
             }}
+            color="primary"
+            size="large"
           >
-            <img src={defaultAvatar} alt="Apri Chatbot" />
-          </button>
+            <Avatar src={defaultAvatar} alt="Apri Chatbot" />
+          </IconButton>
 
           {showPreview && (
-            <div className="chatbot-preview-bubble">
+            <Paper className="chatbot-preview-bubble" elevation={3}>
               {messages[0].text}
-            </div>
+            </Paper>
           )}
         </>
       )}
 
       {isOpen && (
-        <div className="chatbot-wrapper">
-          <div className="chatbot-head">
-            <div className="chatbot-head-left">
-              <img
-                src={defaultAvatar}
-                alt="Avatar"
-                className="chatbot-avatar"
-              />
-              <span>Chatbot Biblioteca</span>
-            </div>
-            <span className="chatbot-toggle" onClick={() => setIsOpen(false)}>
-              ×
-            </span>
-          </div>
+        <Paper className="chatbot-wrapper" elevation={4}>
+          <Box className="chatbot-head">
+            <Box className="chatbot-head-left">
+              <Avatar src={defaultAvatar} className="chatbot-avatar" />
+              <Typography variant="subtitle1">Chatbot Biblioteca</Typography>
+            </Box>
+            <IconButton
+              size="small"
+              className="chatbot-toggle"
+              onClick={() => setIsOpen(false)}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
 
-          <div className="chatbot-box">
+          <Box className="chatbot-box">
             {messages.map((msg, i) => (
-              <div key={i} className={`chatbot-message ${msg.from}`}>
-                <div className={`chatbot-bubble ${msg.from}`}>
+              <Box key={i} className={`chatbot-message ${msg.from}`}>
+                <Paper className={`chatbot-bubble ${msg.from}`} sx={{ p: 1 }}>
                   {msg.text}
-                </div>
+                </Paper>
                 {msg.buttons && (
-                  <div className="chatbot-buttons">
+                  <Box className="chatbot-buttons">
                     {msg.buttons.map((btn, idx) => (
-                      <button
+                      <Button
                         key={idx}
                         onClick={() => handleSend(btn.title, btn.payload)}
+                        variant="outlined"
+                        size="small"
                         className="chatbot-button"
                       >
                         {btn.title}
-                      </button>
+                      </Button>
                     ))}
-                  </div>
+                  </Box>
                 )}
-              </div>
+              </Box>
             ))}
             <div ref={messagesEndRef} />
-          </div>
+          </Box>
 
-          <input
+          <TextField
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend(input)}
             placeholder="Scrivi il tuo messaggio..."
             className="chatbot-input"
+            fullWidth
+            variant="outlined"
           />
-        </div>
+        </Paper>
       )}
     </>
   );
