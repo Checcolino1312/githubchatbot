@@ -1,26 +1,10 @@
-import { useState } from 'react';
-import { loginAdmin } from '../services/loginApi';
+import { useContext } from 'react';
+import { AdminAuthContext } from '../context/AdminAuthContext';
 
 export const useAdminAuth = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const login = async (username: string, password: string) => {
-    try {
-      const result = await loginAdmin(username, password);
-      console.log('✅ Login riuscito:', result);
-      setIsLoggedIn(true);
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error('❌ Login fallito:', error.message);
-        alert(error.message);
-      }
-    }
-  };
-
-  const logout = () => {
-    setIsLoggedIn(false);
-    // Se usi localStorage o token: localStorage.removeItem('token')
-  };
-
-  return { login, logout, isLoggedIn };
+  const context = useContext(AdminAuthContext);
+  if (!context) {
+    throw new Error('useAdminAuth must be used within an AdminAuthProvider');
+  }
+  return context;
 };
