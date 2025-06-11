@@ -1,4 +1,6 @@
 import React from 'react';
+import { Chatbot } from 'chatbot-widget';
+import 'chatbot-widget/dist/Chatbot.css';
 import {
   Container,
   Typography,
@@ -19,7 +21,8 @@ const events = [
 ];
 
 const Home: React.FC = () => (
-  <Box sx={{ backgroundColor: '#fdfcf8', minHeight: '100vh', py: 6 }}>
+  <>
+    <Box sx={{ backgroundColor: '#fdfcf8', minHeight: '100vh', py: 6 }}>
     <Container>
       <Box textAlign="center" mb={6}>
         <Typography variant="h3" fontWeight="bold" gutterBottom>
@@ -65,7 +68,9 @@ const Home: React.FC = () => (
         </Button>
       </Box>
     </Container>
-  </Box>
+    </Box>
+    <Chatbot apiUrl="http://localhost:5005" avatarUrl="/chatbot-avatar.png" />
+  </>
 );
 
 export default Home;
