@@ -3,7 +3,8 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { useAdminAuth } from '../context/AdminAuth';
+import { useAdminAuth } from '../hooks/useAdminAuth'; // o percorso corretto
+
 
 const Navbar: React.FC = () => {
   const { isLoggedIn, logout } = useAdminAuth();

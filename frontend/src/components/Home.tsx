@@ -1,57 +1,71 @@
-import { Link as RouterLink } from 'react-router-dom';
+import React from 'react';
 import {
-  Button,
   Container,
   Typography,
-  List,
-  ListItem,
-  ListItemText,
   Box,
+  Card,
+  CardContent,
+  Button,
+  Grid, // Usiamo il Grid normale
 } from '@mui/material';
 
-const Home: React.FC = () => (
-  <Container sx={{ py: 4 }}>
-    <Box textAlign="center" mb={4}>
-      <Typography variant="h4" gutterBottom>
-        Benvenuto alla Biblioteca Comunale di Codexia
-      </Typography>
-      <Typography variant="body1">
-        Fondata nel 1925, la nostra biblioteca offre oltre 50.000 volumi e un
-        ambiente accogliente dove coltivare la passione per la lettura.
-      </Typography>
-    </Box>
+import EventIcon from '@mui/icons-material/Event';
+import EmailIcon from '@mui/icons-material/Email';
 
-    <Box mb={4}>
-      <Typography variant="h5" gutterBottom>
+const events = [
+  { date: '12 Ottobre', title: "Presentazione del libro 'Viaggio nel Tempo'" },
+  { date: '25 Ottobre', title: 'Laboratorio di lettura per bambini' },
+  { date: '5 Novembre', title: "Incontro con l'autore Giovanni Rossi" },
+];
+
+const Home: React.FC = () => (
+  <Box sx={{ backgroundColor: '#fdfcf8', minHeight: '100vh', py: 6 }}>
+    <Container>
+      <Box textAlign="center" mb={6}>
+        <Typography variant="h3" fontWeight="bold" gutterBottom>
+          Biblioteca Comunale di Codexia
+        </Typography>
+        <Typography variant="h6" color="text.secondary">
+          Dal 1925 un luogo dove cultura, storie e persone si incontrano.
+        </Typography>
+      </Box>
+
+      <Typography variant="h4" gutterBottom textAlign="center">
+        <EventIcon sx={{ verticalAlign: 'middle', mr: 1 }} />
         Prossimi eventi
       </Typography>
-      <List>
-        <ListItem>
-          <ListItemText primary="12 Ottobre - Presentazione del libro 'Viaggio nel Tempo'" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="25 Ottobre - Laboratorio di lettura per bambini" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="5 Novembre - Incontro con l'autore Giovanni Rossi" />
-        </ListItem>
-      </List>
-    </Box>
 
-    <Box textAlign="center">
-      <Button
-        variant="contained"
-        component={RouterLink}
-        to="/registra-prestito"
-        sx={{ mr: 2 }}
-      >
-        Gestisci prestiti
-      </Button>
-      <Button variant="outlined" href="mailto:info@biblioteca.it">
-        Contattaci
-      </Button>
-    </Box>
-  </Container>
+      <Grid container spacing={3} justifyContent="center">
+        {events.map((event, index) => (
+          // @ts-expect-error: MUI Grid typing bug in v7
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <Card elevation={3}>
+              <CardContent>
+                <Typography variant="h6" color="primary">
+                  {event.date}
+                </Typography>
+                <Typography variant="body1">{event.title}</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+
+      <Box textAlign="center" mt={6}>
+        <Typography variant="body1" mb={2}>
+          Per informazioni, prenotazioni o richieste:
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<EmailIcon />}
+          href="mailto:info@biblioteca.it"
+        >
+          Contattaci
+        </Button>
+      </Box>
+    </Container>
+  </Box>
 );
 
 export default Home;

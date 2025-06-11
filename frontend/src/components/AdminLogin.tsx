@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
-import { useAdminAuth } from '../context/AdminAuth';
+import { useAdminAuth } from '../hooks/useAdminAuth'; // o percorso corretto
+
 
 const AdminLogin: React.FC = () => {
   const { login } = useAdminAuth();

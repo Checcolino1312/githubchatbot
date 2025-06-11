@@ -1,15 +1,12 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AdminAuthContext } from './AdminAuthContext'; // aggiorna il path se necessario
 
-interface AdminAuthContextProps {
-  isLoggedIn: boolean;
-  login: (username: string, password: string) => Promise<void>;
-  logout: () => void;
+interface Props {
+  children: ReactNode;
 }
 
-const AdminAuthContext = createContext<AdminAuthContextProps | undefined>(undefined);
-
-export const AdminAuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const AdminAuthProvider: React.FC<Props> = ({ children }) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(
     localStorage.getItem('isAdmin') === 'true'
@@ -17,7 +14,6 @@ export const AdminAuthProvider: React.FC<{ children: ReactNode }> = ({ children 
 
   const login = async (username: string, password: string) => {
     try {
-      // Chiamata fittizia, sostituisci con la tua API
       const response = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -29,7 +25,7 @@ export const AdminAuthProvider: React.FC<{ children: ReactNode }> = ({ children 
       localStorage.setItem('isAdmin', 'true');
       setIsLoggedIn(true);
       navigate('/');
-    } catch (err) {
+    } catch {
       alert('Login fallito');
     }
   };
@@ -45,12 +41,4 @@ export const AdminAuthProvider: React.FC<{ children: ReactNode }> = ({ children 
       {children}
     </AdminAuthContext.Provider>
   );
-};
-
-export const useAdminAuth = () => {
-  const ctx = useContext(AdminAuthContext);
-  if (!ctx) {
-    throw new Error('useAdminAuth deve essere usato dentro AdminAuthProvider');
-  }
-  return ctx;
 };
