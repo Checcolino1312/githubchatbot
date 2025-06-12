@@ -3,13 +3,14 @@
     "target": "ES6",
     "module": "ESNext",
     "jsx": "react",
-    "types": ["vite/client"], 
+    "types": ["vite/client"],
     "declaration": true,
     "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "lib": ["ES2017", "DOM"]  // ✅ AGGIUNTO QUI
   },
-    "include": ["src", "vite-env.d.ts"]  // 👈 Assicurati che sia incluso!
+  "include": ["src", "vite-env.d.ts"]
 }
