@@ -7,4 +7,4 @@ export const useAdminAuth = () => {
     throw new Error('useAdminAuth must be used within an AdminAuthProvider');
   }
   return context;
-};
+  };
